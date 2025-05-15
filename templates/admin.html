@@ -1,0 +1,22 @@
+
+{% extends 'base.html' %}
+{% block title %}Acceuil{% endblock %}
+
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+{% block content %}
+
+    
+    <div class="container p-5 mt-5">
+        <div class="admin_top_page p-4 mb-2 d-flex">
+        <h1>Bonjour {{ username| capitalize }}:</h1>
+        <a href="{{url_for('add_article')}}"></a><button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0 ms-auto" type="button">➕ New Article</button></a>
+        </div>
+    </div>
+
+
+        
+            
+{% endblock %} 
