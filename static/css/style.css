@@ -3755,7 +3755,6 @@ textarea.form-control-lg {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding: var(--bs-navbar-padding-y) var(--bs-navbar-padding-x);
 }
 .navbar > .container,
 .navbar > .container-fluid,
@@ -3777,9 +3776,14 @@ textarea.form-control-lg {
   color: var(--bs-navbar-brand-color);
   text-decoration: none;
   white-space: nowrap;
+  position: relative;
+  top: 0;
+  transition: top ease 0.5s;
 }
+
 .navbar-brand:hover, .navbar-brand:focus {
   color: var(--bs-navbar-brand-hover-color);
+  top: -10px;  
 }
 
 .navbar-nav {
@@ -5798,6 +5802,7 @@ textarea.form-control-lg {
 .carousel-inner {
   position: relative;
   width: 100%;
+  height: 70vh;
   overflow: hidden;
 }
 .carousel-inner::after {
@@ -5811,11 +5816,16 @@ textarea.form-control-lg {
   display: none;
   float: left;
   width: 100%;
-  margin-right: -100%;
+  /* margin-right: -100%; */
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
   transition: transform 0.6s ease-in-out;
 }
+
+.carousel-item .container{
+  width: 200%;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .carousel-item {
     transition: none;
@@ -5939,14 +5949,15 @@ textarea.form-control-lg {
   justify-content: center;
   padding: 0;
   margin-right: 15%;
-  margin-bottom: 1rem;
+  margin-bottom: -3rem;
   margin-left: 15%;
   list-style: none;
 }
+
 .carousel-indicators [data-bs-target] {
   box-sizing: content-box;
   flex: 0 1 auto;
-  width: 30px;
+  width: 50px;
   height: 3px;
   padding: 0;
   margin-right: 3px;
@@ -5961,6 +5972,8 @@ textarea.form-control-lg {
   opacity: 0.5;
   transition: opacity 0.6s ease;
 }
+
+
 @media (prefers-reduced-motion: reduce) {
   .carousel-indicators [data-bs-target] {
     transition: none;
@@ -10894,13 +10907,18 @@ section {
  * Last Build: Tue Nov 14 2017 12:40:57
  */
 .device-wrapper {
-  max-width: 300px;
+  max-width: 700px;
   width: 100%;
 }
 
 .device {
   position: relative;
   background-size: cover;
+  top: 0;
+  transition: top ease 0.8s;
+}
+.device:hover{
+  top: -50px;
 }
 
 .device::after {
@@ -10924,29 +10942,20 @@ section {
   cursor: pointer;
 }
 
-.device[data-device=iPhoneX][data-orientation=portrait][data-color=black] {
-  padding-bottom: 198.898071625%;
+.device {
+  padding-bottom: 150%;
+
 }
 
-.device[data-device=iPhoneX][data-orientation=portrait][data-color=black] .screen {
-  top: 3.1855955679%;
-  left: 6.8870523416%;
+.device .screen {
+  top: -20.1855955679%;
+  left: -42.8870523416%;
   width: 86.2258953168%;
-  height: 93.6288088643%;
+  height: 1.6288088643%;
 }
 
-.device[data-device=iPhoneX][data-orientation=portrait][data-color=black]::after {
-  content: "";
-  background-image: url("../assets/img/portrait_black.png");
-}
 
-.device[data-device=iPhoneX][data-orientation=portrait][data-color=black] .button {
-  display: none;
-  top: 0%;
-  left: 0%;
-  width: 100%;
-  height: 100%;
-}
+
 
 section.cta {
   position: relative;
@@ -10997,7 +11006,7 @@ section.cta:before {
   height: 1rem;
   width: 1rem;
   transform: rotate(10deg);
-  fill: #2937f0;
+  fill: #ffb535;
   top: 15%;
   right: 10%;
 }
@@ -11005,7 +11014,7 @@ section.cta:before {
   position: absolute;
   height: 0.75rem;
   width: 0.75rem;
-  fill: #2937f0;
+  fill: #ffb535;
   bottom: 15%;
   left: 10%;
 }
@@ -11128,6 +11137,29 @@ a.icon-link {
   }
 }
 
+
+.close-btn {
+  background: white;
+  color: #363738;
+  font-weight: bold;
+  outline: none;
+  box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  border-radius: 0;
+  display: inline-block;
+  padding: 0;
+  border: none;
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.close-btn:hover {
+  background: #ffb535;
+  color: #fff;
+}
+
+
 .btn {
   background: white;
   color: #363738;
@@ -11165,6 +11197,13 @@ a.icon-link {
     width: 50px;
   }
 }
+
+
+
+
+
+
+
 
 
 @media (min-width: 576px) {
@@ -11237,7 +11276,7 @@ footer a:hover, footer a:active, footer a:focus {
 
 .masthead {
   background-color: #f8f9fa;
-  padding-top: 9.5rem;
+  padding-top: 5rem;
   padding-bottom: 5rem;
 }
 .masthead .masthead-device-mockup {
@@ -11253,17 +11292,17 @@ footer a:hover, footer a:active, footer a:focus {
   display: none;
 }
 .masthead .masthead-device-mockup .circle .gradient-start-color {
-  stop-color: #2937f0;
+  stop-color: #363738;
 }
 .masthead .masthead-device-mockup .circle .gradient-end-color {
-  stop-color: #9f1ae2;
+  stop-color: #ffb535;
 }
 .masthead .masthead-device-mockup .shape-1 {
   position: absolute;
   height: 1rem;
   width: 1rem;
   transform: rotate(-10deg);
-  fill: #2937f0;
+  fill: #ffb535;
   bottom: 15%;
   left: 10%;
 }
@@ -11271,13 +11310,14 @@ footer a:hover, footer a:active, footer a:focus {
   position: absolute;
   height: 0.75rem;
   width: 0.75rem;
-  fill: #2937f0;
+  fill: #ffb535;
   top: 15%;
   right: 10%;
 }
 .masthead .masthead-device-mockup .device-wrapper {
   max-width: 10rem;
 }
+
 @media (min-width: 576px) {
   .masthead .masthead-device-mockup .circle {
     width: 70%;
