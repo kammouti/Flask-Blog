@@ -30,7 +30,6 @@ class Article(db.Model):
     content = db.Column(db.Text, nullable=False)
     category = db.Column(db.String(200), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-
      # create a string
     def __repr__(self):
         return '<Article %r>' % self.title
@@ -42,20 +41,16 @@ class User(db.Model):
     username = db.Column(db.String(200), nullable=False, unique=True)
     password_hash = db.Column(db.String(256), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-
     # raising this attribute error to prevent exposing the textplain password
     @property
     def password(self):
         raise AttributeError('Password is not accessible! Nice try')
-    
     # set a pasword hasher
     @password.setter
     def password(self, password):
         self.password_hash = generate_password_hash(password)
-
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
-
     # create a string
     def __repr__(self):
         return '<Username %r>' % self.username
@@ -84,7 +79,8 @@ class LoginFrom(FlaskForm):
     password = PasswordField("Mot de passe", validators=[DataRequired()])
     submit = SubmitField("Login")
 
-# routes:
+
+# ################################ routes: ################################
 
 @app.route("/")
 def index():
@@ -185,7 +181,7 @@ def edit_article(id):
             return render_template("edit_article.html", form=form, article_to_edit=article_to_edit)
     else:
         # Make sure the title doesnt exist:
-        flash("Titre de l'article deja existe, esseyez a nouveau!")
+        flash("Titre de l'article deja existe, essayez a nouveau!")
         return render_template("edit_article.html", form=form, article_to_edit=article_to_edit)
     
 
