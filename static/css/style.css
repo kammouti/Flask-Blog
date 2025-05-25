@@ -11159,8 +11159,28 @@ a.icon-link {
   color: #fff;
 }
 
+.btn-danger {
+  background: white;
+  color: var(--bs-red);
+  font-weight: bold;
+  outline: none;
+  box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  border-radius: 0;
+  line-height: 50px;
+  display: inline-block;
+  padding: 0;
+  border: none;
+  &:focus {
+    box-shadow: none;
+  }
+  &:hover {
+    background: var(--bs-red);
+    color: #fff;
+  }
+}
 
-.btn {
+.btn-primary {
   background: white;
   color: #363738;
   font-weight: bold;
@@ -11168,7 +11188,6 @@ a.icon-link {
   box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.2);
   overflow: hidden;
   border-radius: 0;
-  height: 50px;
   line-height: 50px;
   display: inline-block;
   padding: 0;
@@ -11201,7 +11220,28 @@ a.icon-link {
 
 
 
+/* login page */
+.login-page{
+  display: flex;
+  height: 80vh;
+  justify-content: center;
+  align-items: center;
+}
 
+.login_container {
+  width: 50%;
+  min-width: 400px;
+  background: white;
+  color: #363738;
+  outline: none;
+  box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  padding: 4rem;
+  border: none;
+  &:focus {
+    box-shadow: none;
+  }
+}
 
 
 

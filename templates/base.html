@@ -31,16 +31,17 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
                         <li class="nav-item"><a class="nav-link me-lg-3" href="{{url_for('admin', username='ALK')}}">JarmatiAE</a></li>
-                        <li class="nav-item"><a class="nav-link me-lg-3" href="/#services">Services</a></li>
+                        <li class="nav-item"><a class="nav-link me-lg-3" href="{{ url_for('add_user')}}">Ajt utilisateur</a></li>
                         <li class="nav-item"><a class="nav-link me-lg-3" href="{{ url_for('articles')}}">Articles</a></li>
                         <li class="nav-item"><a class="nav-link me-lg-3" href="{{ url_for('add_article')}}">Add Article</a></li>
                     </ul>
-                    <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#feedbackModal">
+                    <a href="{{url_for('login')}}">
+                    <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" >
                         <span class="d-flex align-items-center">
-                            <i class="bi-chat-text-fill me-2"></i>
-                            <span class="small">Send Feedback</span>
+                            <i class="bi-person-fill me-2"></i>
+                            <span class="small">Login</span>
                         </span>
-                    </button>
+                    </button></a>
                 </div>
             </div>
         </nav>

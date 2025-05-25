@@ -1,0 +1,46 @@
+
+{% extends 'base.html' %}
+{% block title %}Acceuil{% endblock %}
+
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5 py-5">
+  <div class="modal-content py-5">
+
+    {% for message in get_flashed_messages() %}
+      <div class="alert alert-warning alert-dismissible fade show d-flex align-items-center" role="alert">
+        <strong>{{message}}</strong>
+        <button type="button" class="close close-btn ms-auto btn-primary rounded-pill px-1" data-bs-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endfor %}
+    
+
+    <form action="/edit_article/{{article_to_edit.id}}" method="POST">
+    {{ form.hidden_tag() }}
+
+    {{ form.title.label(class="form-label") }}
+    {{ form.title(class="form-control", value=article_to_edit.title) }}</br>
+    {{ form.extrait.label(class="form-label") }}
+    {{ form.extrait(class="form-control", value=article_to_edit.extrait) }}</br>
+    {{ form.content.label(class="form-label") }}
+    {{ form.content(class="form-control", value=article_to_edit.content) }}</br>
+    {{ form.category.label(class="form-label") }}
+    {{ form.category(class="form-control", value=article_to_edit.category) }}</br>
+    {{ form.submit(class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0") }}
+    <a href="{{url_for('delete_article', id=article_to_edit.id)}}" class="btn btn-danger rounded-pill px-3">Delete</a>
+
+    </form>
+    </div>
+</div>
+<script>
+  document.querySelector('#extrait').value="{{article_to_edit.extrait | safe}}";
+  document.querySelector('#content').value="{{article_to_edit.content | safe}}";
+  document.querySelector('#category').value="{{article_to_edit.category | safe}}";
+</script>
+{% endblock %}

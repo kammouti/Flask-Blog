@@ -1,0 +1,65 @@
+
+{% extends 'base.html' %}
+{% block title %}Acceuil{% endblock %}
+
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5 py-5">
+  <div class="modal-content py-5">
+
+    {% for message in get_flashed_messages() %}
+      <div class="alert alert-warning alert-dismissible fade show d-flex align-items-center" role="alert">
+        <strong>{{message}}</strong>
+        <button type="button" class="close close-btn ms-auto btn-primary rounded-pill px-1" data-bs-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endfor %}
+    
+
+    <form method="POST">
+    {{ form.hidden_tag() }}
+
+    {{ form.full_name.label(class="form-label") }}
+    {{ form.full_name(class="form-control") }}</br>
+    {{ form.username.label(class="form-label") }}
+    {{ form.username(class="form-control") }}</br>
+    {{ form.password_hash.label(class="form-label") }}
+    {{ form.password_hash(class="form-control") }}</br>
+    {{ form.password_hash2.label(class="form-label") }}
+    {{ form.password_hash2(class="form-control") }}</br>
+
+    {{ form.submit(class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0") }}
+
+    </form>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Username</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in user_list %}
+        <tr>
+          <th scope="row">{{ user.id }}</th>
+          <td>{{user.full_name}}</td>
+          <td>{{user.username}}</td>
+          <td><a href="{{url_for('delete_user', id=user.id)}}"> <button class="btn btn-danger rounded-pill px-3 mb-2 mb-lg-0">Suprimer</button></a> </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+   
+</div>
+
+
+{% endblock %}
