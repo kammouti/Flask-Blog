@@ -30,9 +30,7 @@ class Article(db.Model):
     content = db.Column(db.Text, nullable=False)
     category = db.Column(db.String(200), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-     # create a string
-    def __repr__(self):
-        return '<Article %r>' % self.title
+
 
 
 class User(db.Model):
@@ -76,7 +74,7 @@ class UserFrom(FlaskForm):
 # login form class
 class LoginFrom(FlaskForm):
     username = StringField("Nom d'utilisateur", validators=[DataRequired()])
-    password = PasswordField("Mot de passe", validators=[DataRequired()])
+    password_hash = PasswordField("Mot de passe", validators=[DataRequired()])
     submit = SubmitField("Login")
 
 
@@ -203,7 +201,6 @@ def delete_article(id):
         #                        articles=articles)
         return redirect(url_for('articles'))
 
-    
 
 
 @app.route("/articles")
@@ -222,10 +219,18 @@ def login():
     form = LoginFrom()
     if form.validate_on_submit():
         username = form.username.data
-        password = form.password.data
+        password = form.password_hash.data
         
-        flash('User logged avec succee!')
-        return render_template("index.html")
+        user_to_check = User.query.filter_by(username=username).first()
+        if user_to_check:
+            if user_to_check.verify_password(password):
+                flash('User logged-in avec succee!')
+                return redirect(url_for('articles'))
+            else:
+                flash('Mot de passe incorect!')
+        else:
+            flash("Nom d'utilisateur incorrect")
+        
     return render_template("login.html", form = form)
 
 

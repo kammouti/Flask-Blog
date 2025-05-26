@@ -11220,13 +11220,47 @@ a.icon-link {
 
 
 
+
 /* login page */
-.login-page{
+.login-body{
   display: flex;
-  height: 80vh;
+  height: 100vh;
   justify-content: center;
   align-items: center;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(
+    45deg,
+    #FFCF7D,
+    #FFE2B0,
+    #FFB535,
+    #8C7348,
+    #59503F
+  );
+  background-size: 400% 400%;
+  animation: gradientFlow 90s ease infinite, hueRotation 180s linear infinite;
 }
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes hueRotation {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
 
 .login_container {
   width: 50%;
