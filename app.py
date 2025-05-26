@@ -26,6 +26,7 @@ migrate = Migrate(app,db)
 class Article(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(500), nullable=False, unique=True)
+    slug = db.Column(db.String(500))
     extrait = db.Column(db.Text, nullable=False)
     content = db.Column(db.Text, nullable=False)
     category = db.Column(db.String(200), nullable=False)
