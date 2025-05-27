@@ -11,14 +11,19 @@
 <div class="container mt-5 py-5">
   <div class="modal-content py-5">
 
-    {% for message in get_flashed_messages() %}
-      <div class="alert alert-warning alert-dismissible fade show d-flex align-items-center" role="alert">
-        <strong>{{message}}</strong>
-        <button type="button" class="close close-btn ms-auto btn-primary rounded-pill px-1" data-bs-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    {% endfor %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert {{category}} alert-dismissible fade show d-flex align-items-center" role="alert">
+                <strong>{{message}}</strong>
+                <button type="button" class="close close-btn ms-auto btn rounded-pill px-1" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
     
 
     <form action="/edit_article/{{article_to_edit.id}}" method="POST">
@@ -32,6 +37,8 @@
     {{ form.content(class="form-control", value=article_to_edit.content) }}</br>
     {{ form.category.label(class="form-label") }}
     {{ form.category(class="form-control", value=article_to_edit.category) }}</br>
+    {{ form.slug.label(class="form-label") }}
+    {{ form.slug(class="form-control", value=article_to_edit.slug) }}</br>
     {{ form.submit(class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0") }}
     <a href="{{url_for('delete_article', id=article_to_edit.id)}}" class="btn btn-danger rounded-pill px-3">Delete</a>
 

@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block title %}Acceuil{% endblock %}
+
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="container mt-5 py-5">
+    <div class="modal-content py-5">
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Post content-->
+                <article>
+                    <!-- Post header-->
+                    <header class="mb-4">
+                        <!-- Post title-->
+                        <h1 class="fw-bolder mb-1">{{article.title}}</h1>
+                        <!-- Post meta content-->
+                        <div class="text-muted fst-italic mb-2">{{article.created_at.day}}/{{article.created_at.month}}/{{article.created_at.year}}</div>
+                        <!-- Post categories-->
+                        <a class="badge bg-secondary text-decoration-none link-light" href="#!">{{article.category}}</a>
+                    </header>
+                    <!-- Preview image figure-->
+                    <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure>
+                    <!-- Post content-->
+                    <section class="mb-5">
+                        <p class="fs-5 mb-4">{{article.content}}</p>
+                        <!-- <p class="fs-5 mb-4">The universe is large and old, and the ingredients for life as we know it are everywhere, so there's no reason to think that Earth would be unique in that regard. Whether of not the life became intelligent is a different question, and we'll see if we find that.</p> -->
+                        <!-- <p class="fs-5 mb-4">If you get asteroids about a kilometer in size, those are large enough and carry enough energy into our system to disrupt transportation, communication, the food chains, and that can be a really bad day on Earth.</p> -->
+                        <!-- <h2 class="fw-bolder mb-4 mt-5">I have odd cosmic thoughts every day</h2> -->
+                        <!-- <p class="fs-5 mb-4">For me, the most fascinating interface is Twitter. I have odd cosmic thoughts every day and I realized I could hold them to myself or share them with people who might be interested.</p> -->
+                        <!-- <p class="fs-5 mb-4">Venus has a runaway greenhouse effect. I kind of want to know what happened there because we're twirling knobs here on Earth without knowing the consequences of it. Mars once had running water. It's bone dry today. Something bad happened there as well.</p> -->
+                    </section>
+                </article>
+                <!-- Comments section-->
+                <section class="mb-5">
+                    <div class="card-group d-flex flex-column">
+                        <div class="row">
+                            
+                        <div class="col-12">
+                            <h2>Article peut vous interesse:</h2>
+                            <article class="blog-card">
+                                <div class="blog-card__background">
+                                <div class="card__background--wrapper">
+                                    <div class="card__background--main" style="background-image: url('/static/images/Car-crash-amico.png');">
+                                    <div class="card__background--layer"></div>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="blog-card__head">
+                                <span class="date__box">
+                                    <span class="date__day">{{article.created_at.day}}</span>
+                                    <span class="date__month">{{article.created_at.month}}</span>
+                                </span>
+                                </div>
+                                <div class="blog-card__info">
+                                <h5>{{article.title}}</h5>
+                                <p>
+                                    <a href="#" class="icon-link mr-3"><i class="fa fa-pencil-square-o"></i> Jarmati Auto Ecole</a>
+                                    <a href="#" class="icon-link"><i class="fa fa-comments-o"></i> {{article.id}}</a>
+                                </p>
+                                <p>{{article.extrait}}</p>
+                                <div class="d-flex">
+                                    <a href="{{url_for('article', id=article.id)}}" class="btn btn-primary rounded-pill px-3">READ MORE</a>
+                                    <div class="ms-auto">
+                                        <a href="{{url_for('edit_article', id=article.id)}}" class="btn btn-primary rounded-pill px-3">Edit</a>
+                                        <a href="{{url_for('delete_article', id=article.id)}}" class="btn btn-danger rounded-pill px-3">Delete</a>
+                                    </div>
+                                </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!-- Side widgets-->
+            <div class="col-lg-4">
+                <!-- Categories widget-->
+                <div class="card mb-4">
+                    <div class="card-header">Categories</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <ul class="list-unstyled mb-0">
+                                    <li><a href="#!">General</a></li>
+                                    <li><a href="#!">Evenement</a></li>
+                                    <li><a href="#!">Technique de conduite</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-6">
+                                <ul class="list-unstyled mb-0">
+                                    <li><a href="#!">Lois au Maroc</a></li>
+                                    <li><a href="#!">Lois de conduite</a></li>
+                                    <li><a href="#!">Tutorials</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Side widget-->
+                <div class="card mb-4">
+                    <div class="card-header">Side Widget</div>
+                    <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -11,14 +11,18 @@
 <div class="container mt-5 py-5">
   <div class="modal-content py-5">
 
-    {% for message in get_flashed_messages() %}
-      <div class="alert alert-warning alert-dismissible fade show d-flex align-items-center" role="alert">
-        <strong>{{message}}</strong>
-        <button type="button" class="close close-btn ms-auto btn-primary rounded-pill px-1" data-bs-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    {% endfor %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert {{category}} alert-dismissible fade show d-flex align-items-center" role="alert">
+                <strong>{{message}}</strong>
+                <button type="button" class="close close-btn ms-auto btn rounded-pill px-1" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
     
 
     <form method="POST">

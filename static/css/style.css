@@ -11433,3 +11433,19 @@ footer a:hover, footer a:active, footer a:focus {
     max-width: 17rem;
   }
 }
+
+
+/* flash categories */
+
+ .error {
+  color: red;
+  background-color: #FFC6C6;
+}
+.success {
+  color: green;
+  background-color: #84AE92;
+}
+.message {
+  color: black;
+  background-color: #F5EEDD;
+}
