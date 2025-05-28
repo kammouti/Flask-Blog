@@ -25,25 +25,29 @@
     {% endwith %}
 
     
+    <div class="container form-card bg-white shadow mt-5">
+      <h2 class="mb-5">Modifier l'article "{{article_to_edit.title}}":</h2>
+      <form action="/edit_article/{{article_to_edit.id}}" method="POST">
+      {{ form.hidden_tag() }}
 
-    <form action="/edit_article/{{article_to_edit.id}}" method="POST">
-    {{ form.hidden_tag() }}
+      {{ form.title.label(class="form-label") }}
+      {{ form.title(class="form-control", value=article_to_edit.title) }}</br>
+      {{ form.extrait.label(class="form-label") }}
+      {{ form.extrait(class="form-control", value=article_to_edit.extrait) }}</br>
+      {{ form.content.label(class="form-label") }}
+      {{ form.content(class="form-control", value=article_to_edit.content) }}</br>
+      {{ form.category.label(class="form-label") }}
+      {{ form.category(class="form-control", value=article_to_edit.category) }}</br>
+      {{ form.slug.label(class="form-label") }}
+      {{ form.slug(class="form-control", value=article_to_edit.slug) }}</br>
+      {{ form.submit(class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0") }}
+      <a href="{{url_for('delete_article', id=article_to_edit.id)}}" class="btn btn-danger rounded-pill px-3">Delete</a>
 
-    {{ form.title.label(class="form-label") }}
-    {{ form.title(class="form-control", value=article_to_edit.title) }}</br>
-    {{ form.extrait.label(class="form-label") }}
-    {{ form.extrait(class="form-control", value=article_to_edit.extrait) }}</br>
-    {{ form.content.label(class="form-label") }}
-    {{ form.content(class="form-control", value=article_to_edit.content) }}</br>
-    {{ form.category.label(class="form-label") }}
-    {{ form.category(class="form-control", value=article_to_edit.category) }}</br>
-    {{ form.slug.label(class="form-label") }}
-    {{ form.slug(class="form-control", value=article_to_edit.slug) }}</br>
-    {{ form.submit(class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0") }}
-    <a href="{{url_for('delete_article', id=article_to_edit.id)}}" class="btn btn-danger rounded-pill px-3">Delete</a>
-
-    </form>
+      </form>
     </div>
+
+
+  </div>
 </div>
 <script>
   document.querySelector('#extrait').value="{{article_to_edit.extrait | safe}}";

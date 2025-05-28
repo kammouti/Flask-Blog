@@ -35,7 +35,7 @@
         <div class="card-group d-flex flex-column">
             <div class="row">
             <div class="col-12">
-            <article class="blog-card">
+            <article class="blog-card shadow mt-5">
                 <div class="blog-card__background">
                 <div class="card__background--wrapper">
                     <div class="card__background--main" style="background-image: url('/static/images/Car-crash-amico.png');">
@@ -57,14 +57,20 @@
                 </p>
                 <p>{{article.extrait}}</p>
                 <div class="d-flex">
-                    <a href="{{url_for('article', id=article.id)}}" class="btn btn-primary rounded-pill px-3">READ MORE</a>
+                    {% if current_user.is_authenticated %}
+                    <a href="{{url_for('article', id=article.id)}}" class="btn btn-primary btn-sm rounded-pill px-3">LIRE ENCORE</a>
                     <div class="ms-auto">
-                        <a href="{{url_for('edit_article', id=article.id)}}" class="btn btn-primary rounded-pill px-3">Edit</a>
-                        <a href="{{url_for('delete_article', id=article.id)}}" class="btn btn-danger rounded-pill px-3">Delete</a>
+                        <a href="{{url_for('edit_article', id=article.id)}}" class="btn btn-primary btn-sm rounded-pill px-3">MODIFER</a>
+                        <a href="{{url_for('delete_article', id=article.id)}}" class="btn btn-danger btn-sm rounded-pill px-3">SUPRIMER</a>
                     </div>
+                    {% else %}
+                    <a href="{{url_for('article', id=article.id)}}" class="btn btn-primary btn-sm rounded-pill px-3 ms-auto">LIRE ENCORE</a>
+                    {% endif %}
+
                 </div>
                 </div>
             </article>
+            </div>
             </div>
         </div>
         {% endfor %}

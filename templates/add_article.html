@@ -25,23 +25,28 @@
             {% endfor %}
         {% endif %}
     {% endwith %}
+    <div class="container form-card bg-white shadow mt-5 p-5">
+      <h1 class="mb-5">Ajouter un nouveau article:</h1>
+      <form method="POST">
+      {{ form.hidden_tag() }}
 
-    <form method="POST">
-    {{ form.hidden_tag() }}
+      {{ form.title.label(class="form-label") }}
+      {{ form.title(class="form-control", placeholder="Ajoutez un titre") }}</br>
+      {{ form.extrait.label(class="form-label") }}
+      {{ form.extrait(class="form-control", placeholder="Ajoutez un extrait") }}</br>
+      {{ form.content.label(class="form-label") }}
+      {{ form.content(class="form-control", placeholder="Ajoutez le contenu") }}</br>
+      {{ form.category.label(class="form-label") }}
+      {{ form.category(class="form-control", placeholder="Choisir une categorie") }}</br>
+      {{ form.slug.label(class="form-label") }}
+      {{ form.slug(class="form-control", placeholder="Ajoutez un slug") }}</br>
+      {{ form.submit(class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0 mt-2") }}
 
-    {{ form.title.label(class="form-label") }}
-    {{ form.title(class="form-control", placeholder="Ajoutez un titre") }}</br>
-    {{ form.extrait.label(class="form-label") }}
-    {{ form.extrait(class="form-control", placeholder="Ajoutez un extrait") }}</br>
-    {{ form.content.label(class="form-label") }}
-    {{ form.content(class="form-control", placeholder="Ajoutez le contenu") }}</br>
-    {{ form.category.label(class="form-label") }}
-    {{ form.category(class="form-control", placeholder="Choisir une categorie") }}</br>
-    {{ form.slug.label(class="form-label") }}
-    {{ form.slug(class="form-control", placeholder="Ajoutez un slug") }}</br>
-    {{ form.submit(class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0") }}
+      </form>
+      </div>
 
-    </form>
+
+      
     </div>
 </div>
 {% endblock %}

@@ -2849,19 +2849,19 @@ textarea.form-control-lg {
 
 .btn-primary {
   --bs-btn-color: #fff;
-  --bs-btn-bg: #2937f0;
-  --bs-btn-border-color: #2937f0;
+  --bs-btn-bg: #ffb535;
+  --bs-btn-border-color: #ffb535;
   --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: #232fcc;
-  --bs-btn-hover-border-color: #212cc0;
+  --bs-btn-hover-bg: #f8b33b;
+  --bs-btn-hover-border-color: #f8b33b;
   --bs-btn-focus-shadow-rgb: 73, 85, 242;
   --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: #212cc0;
+  --bs-btn-active-bg: #f8b33b;
   --bs-btn-active-border-color: #1f29b4;
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   --bs-btn-disabled-color: #fff;
-  --bs-btn-disabled-bg: #2937f0;
-  --bs-btn-disabled-border-color: #2937f0;
+  --bs-btn-disabled-bg: #ffb535;
+  --bs-btn-disabled-border-color: #ffb535;
 }
 
 .btn-secondary {
@@ -3151,7 +3151,7 @@ textarea.form-control-lg {
 .btn-sm, .btn-group-sm > .btn {
   --bs-btn-padding-y: 0.25rem;
   --bs-btn-padding-x: 0.5rem;
-  --bs-btn-font-size: 0.875rem;
+  --bs-btn-font-size: 0.775rem;
   --bs-btn-border-radius: 0.25rem;
 }
 
@@ -11055,6 +11055,7 @@ body{
 .blog-card {
   padding: 30px;
   position: relative;
+  border-radius: 2rem;
   .date__box {
     opacity: 0;
     transform: scale(0.5);
@@ -11068,16 +11069,19 @@ body{
     left: 0;
     width: 100%;
     height: 100%;
+    border-radius: 2rem;
   }
   .blog-card__background {
     padding: 15px;
     background: white;
+    border-radius: 2rem;
   }
   .card__background--wrapper{
     height: 100%;
     clip-path: polygon(0 0, 100% 0, 100% 80%, 0 60%);
     position: relative;
     overflow: hidden;
+    border-radius: 2rem;
   }
   .card__background--main{
     height: 100%;
@@ -11085,12 +11089,14 @@ body{
     transition: 300ms ease-in-out;
     background-repeat: no-repeat;
     background-size: cover;
+    border-radius: 2rem;
   }
   .card__background--layer {
     z-index: 0;
     opacity: 0;
     background: rgba(#333, 0.9);
     transition: 300ms ease-in-out;
+    border-radius: 2rem;
   }
   .blog-card__head {
     height: 300px;
@@ -11217,7 +11223,9 @@ a.icon-link {
   }
 }
 
-
+.btn-sm{
+  line-height: 30px;
+}
 
 
 
@@ -11432,6 +11440,15 @@ footer a:hover, footer a:active, footer a:focus {
   .masthead .masthead-device-mockup .device-wrapper {
     max-width: 17rem;
   }
+}
+
+
+
+.form-card {
+  padding: 30px;
+  position: relative;
+  border-radius: 1rem;
+  background-color: whitesmoke;
 }
 
 
