@@ -21,6 +21,7 @@ class User(db.Model, UserMixin):
     full_name = db.Column(db.String(300))
     username = db.Column(db.String(200), nullable=False, unique=True)
     password_hash = db.Column(db.String(256), nullable=False)
+    is_admin = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     # raising this attribute error to prevent exposing the textplain password
     @property

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not found</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-size: 3rem;
+        }
+        h1{
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <h1>403 Error</h1>
+    <p> This user doesn't have access to this page, please contact your admin</p>
+
+    <p> Or - Go back to <a href="{{url_for('index')}}">Home</a> page</p>
+    
+</body>
+</html>

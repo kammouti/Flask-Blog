@@ -1,10 +1,11 @@
-from flask import Flask, render_template, flash, url_for, redirect, request,session
+from flask import Flask, render_template, flash, url_for, redirect, request,session, abort
 from dotenv import load_dotenv
 import os
 from flask_migrate import Migrate
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 from blog_forms import ArticleFrom, UserFrom, LoginFrom
 from models import Article, User, db
+from functools import wraps
 
 load_dotenv()
 secret_key = os.getenv("MY_KEY")
@@ -30,6 +31,19 @@ login_manager.login_view = 'login'
 @login_manager.user_loader
 def user_loader(user_id):
     return User.query.get(int(user_id))
+
+
+
+# ################################ admin decorator: ################################
+
+
+def admin_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if not current_user.is_authenticated or not current_user.is_admin:
+            abort(403)
+        return f(*args, **kwargs)
+    return decorated_function
 
 
 
@@ -122,10 +136,12 @@ def delete_article(id):
         return redirect(url_for('articles'))
 
 
-
 # ################################ User routes: ################################
 
+
+
 @app.route("/add_user", methods=['GET', 'POST'])
+@admin_required
 @login_required
 def add_user():
     form = UserFrom()
@@ -137,7 +153,8 @@ def add_user():
             # using password insted of password_hash so the password is hashed automaticly
             user_to_add = User(username = form.username.data,
                                password = form.password_hash.data,
-                               full_name = form.full_name.data
+                               full_name = form.full_name.data,
+                               is_admin = form.is_admin.data
                                )
             db.session.add(user_to_add)
             db.session.commit()
@@ -156,7 +173,7 @@ def add_user():
 
 
 @app.route("/delete_user/<int:id>")
-@login_required
+# @login_required
 def delete_user(id):
     form = UserFrom()
     user_list = User.query.order_by(User.created_at)
@@ -175,7 +192,6 @@ def delete_user(id):
     except:
         flash("Oups! Esseyez a nouveau!")
         return redirect(url_for('add_user'))
-
 
 
 # ################################ Login routes: ################################
@@ -217,9 +233,13 @@ def logout():
 def admin_dash(username):
     return render_template("admin.html", username=username)
 
-
-
 # ################################ Error pages: ################################
+
+
+@app.errorhandler(403)
+def not_found(e):
+    return render_template("403.html"), 403
+
 
 # invalid URL
 @app.errorhandler(404)
@@ -230,8 +250,6 @@ def not_found(e):
 @app.errorhandler(500)
 def not_found(e):
     return render_template("500.html"), 500
-
-
 
 
 if __name__ == "__main__":

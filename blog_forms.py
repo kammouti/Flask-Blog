@@ -21,6 +21,7 @@ class UserFrom(FlaskForm):
     username = StringField("Nom d'utilisateur", validators=[DataRequired()])
     password_hash = PasswordField("Mot de passe", validators=[DataRequired(), EqualTo('password_hash2', message='Les mots de passe doivent correspondre!')])
     password_hash2 = PasswordField("Confirmer le Mot de passe", validators=[DataRequired()])
+    is_admin = BooleanField("Cet utilisateur est un admin?")
     submit = SubmitField("Soumettre")
 
 # login form class
